@@ -10,7 +10,7 @@ function ActiveLink(listMenuSelector, options) {
   })
 
   var url = url = new URL(window.location.href);
-  var menu_name = url.pathname.split('/')[1];
+  var menu_name = url.pathname.split('/')[2];
   if (menu_name === '') {
     // console.log(listMenuElement.querySelector(`[data-link="home"]`))
     listMenuElement.querySelector(`[data-link="home"]`).classList.add('active');
@@ -18,7 +18,6 @@ function ActiveLink(listMenuSelector, options) {
   }
   
   var menu_active = listMenuElement.querySelector(`[data-link=${menu[menu_name]}]`);
-  
   if (menu_active) {
     menu_active.classList.add('active');
     var menu_parent = menu_active.closest('.menu-parent');

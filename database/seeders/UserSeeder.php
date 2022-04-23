@@ -28,7 +28,8 @@ class UserSeeder extends Seeder
         foreach ($data as $item) {
             $user = User::create($item);
             UserInfo::create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'name' => 'Trịnh Quang Phúc'
             ]);
         }
     }

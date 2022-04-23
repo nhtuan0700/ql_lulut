@@ -32,4 +32,12 @@ class User extends Authenticatable
     {
         return !!optional(optional($this->role)->permissions)->contains($permission);
     }
+
+    public function role() {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function info() {
+        return $this->hasOne(UserInfo::class, 'user_id');
+    }
 }

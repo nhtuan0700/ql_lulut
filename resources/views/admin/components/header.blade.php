@@ -8,7 +8,7 @@
     </li>
     <li>
       <a href="#" class="d-flex align-items-center pl-2 pr-2">
-        <img src="{{ asset('admin/img/logo.png') }}" alt="" width="38px">
+        <img src="{{ asset('img/logo.png') }}" alt="" width="38px">
         <p class="m-0 ml-2">HỆ THỐNG QUẢN LÝ ỦNG HỘ VÀ PHÂN BỐ<br>
           <span style="color: #f28b43">Huyện Hòa Vang - ĐN</span>
         </p>
@@ -22,7 +22,7 @@
     {{-- @include('components.notification') --}}
     <li class="nav-item dropdown user user-menu d-flex align-items-center">
       <a href="#" class="nav-link" data-toggle="dropdown">
-        <img src="{{ asset('admin/img/user.png') }}" class="user-image" alt="User Image">
+        <img src="{{ asset('img/user.png') }}" class="user-image" alt="User Image">
         <span class="hidden-xs"></span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

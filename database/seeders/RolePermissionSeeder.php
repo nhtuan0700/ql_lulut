@@ -46,8 +46,8 @@ class RolePermissionSeeder extends Seeder
             ],
         ];
         foreach ($role_permissions as $item) {
-            $permission = Permission::whereIn('name', $item['permissions'])->select('id')->get();
-            Role::find(1)->permissions()->sync($permission);
+            $permissions = Permission::whereIn('name', $item['permissions'])->select('id')->get();
+            Role::find($item['role_id'])->permissions()->sync($permissions);
         }
     }
 }

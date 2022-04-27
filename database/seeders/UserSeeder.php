@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 'role_id' => Role::ADMIN
             ]
         ];
-
+        
         foreach ($data as $item) {
             $user = User::create($item);
             UserInfo::create([
@@ -32,5 +32,11 @@ class UserSeeder extends Seeder
                 'name' => 'Trịnh Quang Phúc'
             ]);
         }
+
+        User::factory()->count(20)->create()->each(function($user) {
+            UserInfo::factory()->count(1)->create([
+                'user_id' => $user->id
+            ]);
+        });
     }
 }

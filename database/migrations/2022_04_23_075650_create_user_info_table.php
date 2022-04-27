@@ -18,6 +18,7 @@ class CreateUserInfoTable extends Migration
             $table->string('name')->nullable();
             $table->string('address')->nullable();
             $table->string('phone_number', 10)->nullable();
+            $table->string('card_id', 12)->nullable();
             $table->string('dob')->nullable();
             $table->boolean('gender')->nullable()->comment('0: female | 1: male');
             $table->string('description')->nullable();

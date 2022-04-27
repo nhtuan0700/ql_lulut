@@ -6,7 +6,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 pt-3 mb-3">
       <div class="image d-block">
-        <img src="{{ asset('admin/img/user.png') }}" class="img-circle elevation-2" alt="User Image">
+        <img src="{{ asset('img/user.png') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
         {{-- <a href="#" class="d-block">{{ Auth::user()->role->name }}</a> --}}
@@ -26,7 +26,15 @@
             </p>
           </a>
         </li>
-
+        @can('user.manage')
+          <li class="nav-item">
+            <a href="{{ route('admin.user.index') }}" class="nav-link" data-link="user">
+              <p>
+                Quản lý người dùng
+              </p>
+            </a>
+          </li>
+        @endcan
       </ul>
     </nav>
   </div>
@@ -34,7 +42,7 @@
 
 @push('js')
   {{-- Active Link --}}
-  <script src="{{ asset('admin/js/active-link.js') }}"></script>
+  <script src="{{ asset('js/active-link.js') }}"></script>
   <script>
     $(function() {
       var options = {

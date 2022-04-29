@@ -23,6 +23,7 @@ class RolePermissionSeeder extends Seeder
                     'user.manage',
                     'goods.manage',
                     'registration.manage',
+                    'post.manage',
                     'family.confirm'
                 ],
             ],

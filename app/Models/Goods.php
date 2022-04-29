@@ -10,4 +10,8 @@ class Goods extends Model
     use HasFactory;
 
     protected $table = 'goods';
+
+    protected $fillable = [
+        'name', 'unit', 'qty'
+    ];
 }

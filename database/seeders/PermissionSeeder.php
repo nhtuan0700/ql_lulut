@@ -19,6 +19,9 @@ class PermissionSeeder extends Seeder
                 'name' => 'user.manage'
             ],
             [
+                'name' => 'post.manage'
+            ],
+            [
                 'name' => 'goods.manage'
             ],
             [

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\GoodsController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +34,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 
         Route::group(['as' => 'user.', 'prefix' => 'user', 'middleware' => 'acl:user.manage'], function () {
             Route::get('index', [UserController::class, 'index'])->name('index');
-            Route::get('search', [UserController::class, 'search'])->name('search');
+            // Route::get('search', [UserController::class, 'search'])->name('search');
             Route::get('create', [UserController::class, 'create'])->name('create');
             Route::post('create', [UserController::class, 'store'])->name('store');
             Route::get('edit/{id?}', [UserController::class, 'edit'])->name('edit');
@@ -40,6 +42,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
             Route::get('reset-password/{id}', [UserController::class, 'showFormResetPassword'])->name('reset_password');
             Route::put('reset-password/{id}', [UserController::class, 'resetPassword']);
             Route::post('handle/{id}', [UserController::class, 'handleAccount'])->name('handle');
+        });
+
+        Route::group(['as' => 'goods.', 'prefix' => 'hang-cuu-tro', 'middleware' => 'acl:goods.manage'], function() {
+            Route::get('index', [GoodsController::class, 'index'])->name('index');
+            Route::get('create', [GoodsController::class, 'create'])->name('create');
+            Route::post('create', [GoodsController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [GoodsController::class, 'edit'])->name('edit');
+            Route::put('update/{id}', [GoodsController::class, 'update'])->name('update');
+        });
+
+        Route::group(['as' => 'post.', 'prefix' => 'bai-viet', 'middleware' => 'acl:post.manage'], function() {
+            Route::get('index', [PostController::class, 'index'])->name('index');
+            Route::get('create', [PostController::class, 'create'])->name('create');
+            Route::post('create', [PostController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [PostController::class, 'edit'])->name('edit');
+            Route::put('update/{id}', [PostController::class, 'update'])->name('update');
         });
     });
 });

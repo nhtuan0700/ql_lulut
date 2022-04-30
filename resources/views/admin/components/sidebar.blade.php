@@ -35,6 +35,24 @@
             </a>
           </li>
         @endcan
+        @can('goods.manage')
+          <li class="nav-item">
+            <a href="{{ route('admin.goods.index') }}" class="nav-link" data-link="hang-cuu-tro">
+              <p>
+                Quản lý hàng cứu trợ
+              </p>
+            </a>
+          </li>
+        @endcan
+        @can('post.manage')
+          <li class="nav-item">
+            <a href="{{ route('admin.post.index') }}" class="nav-link" data-link="bai-viet">
+              <p>
+                Quản lý bài viết
+              </p>
+            </a>
+          </li>
+        @endcan
       </ul>
     </nav>
   </div>

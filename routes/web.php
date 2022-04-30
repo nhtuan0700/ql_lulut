@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\GoodsController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Client\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // ADMIN AREA
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
@@ -29,7 +30,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::middleware(['auth', 'auth_admin'])->group(function () {
-        Route::get('/home', [HomeController::class, 'index'])->name('index');
+        Route::get('/home', [AdminHomeController::class, 'index'])->name('index');
 
 
         Route::group(['as' => 'user.', 'prefix' => 'user', 'middleware' => 'acl:user.manage'], function () {
@@ -58,6 +59,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
             Route::post('create', [PostController::class, 'store'])->name('store');
             Route::get('edit/{id}', [PostController::class, 'edit'])->name('edit');
             Route::put('update/{id}', [PostController::class, 'update'])->name('update');
+            Route::delete('delete/{id}', [PostController::class, 'delete'])->name('delete');
         });
     });
 });
+
+// Client area
+Route::get('/', [HomeController::class, 'index'])->name('index');

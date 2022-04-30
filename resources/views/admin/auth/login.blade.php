@@ -28,7 +28,7 @@
       <p>QUẢN LÝ HỖ TRỢ HUYỆN HÒA VANG</p>
     </div>
     <!-- /.login-logo -->
-    <div class="card">
+    <div class="card w-50 mx-auto">
       <div class="card-body login-card-body">
         <p class="login-box-msg">Đăng nhập để tiếp tục</p>
 

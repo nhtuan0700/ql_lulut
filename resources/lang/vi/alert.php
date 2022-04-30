@@ -13,4 +13,8 @@ return [
         'success' => 'Xóa thành công',
         'fail' => 'Xóa thất bại'
     ],
+    'register' => [
+        'success' => 'Đăng ký thành công',
+        'fail' => 'Đăng ký thất bại'
+    ]
 ];

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ config('app.name') }} | Đăng nhập</title>
+  <title>Đăng nhập | Trang quản trị</title>
   <link rel="icon" href="{{ asset('iconute.ico') }}" type="image/x-icon">
 
   <!-- Google Font: Source Sans Pro -->
@@ -21,14 +21,12 @@
   <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 </head>
 
-<body class="hold-transition login-page" style="height: unset">
-  <div class="login-box w-50 mt-5">
-    <div class="login-logo">
-      <b>TRANG QUẢN TRỊ</b>
-      <p>QUẢN LÝ HỖ TRỢ HUYỆN HÒA VANG</p>
-    </div>
-    <!-- /.login-logo -->
-    <div class="card w-50 mx-auto">
+<body class="hold-transition login-page">
+  <div class="login-box">
+    <div class="card mx-auto  card-outline card-primary">
+      <div class="card-header text-center">
+        <b>Trang quản trị</b>
+      </div>
       <div class="card-body login-card-body">
         <p class="login-box-msg">Đăng nhập để tiếp tục</p>
 
@@ -51,7 +49,7 @@
           </div>
           <div class="input-group mb-3">
             <input type="password" class="form-control @error('password') is-invalid @enderror"
-              placeholder="Password" name="password">
+              placeholder="Mật khẩu" name="password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>

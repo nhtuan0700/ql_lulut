@@ -17,9 +17,10 @@ class AuthAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->role->id != Role::SUPPORTER){
+        if (Auth::user()->role->id != Role::SUPPORTER) {
             return $next($request);
         }
-        return redirect(route('admin.login'))->with('alert-fail', 'Không thể truy cập hệ thống');
+        return redirect(route('index'));
+        // return redirect(route('admin.login'))->with('alert-fail', 'Không thể truy cập hệ thống');
     }
 }

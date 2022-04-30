@@ -84,6 +84,16 @@
                   </div>
                 </div>
                 <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="address">Địa chỉ:</label>
+                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
+                      value="{{ old('address') ?? $user->info->address }}" rules="required">
+                    @error('address')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>
                 </div>
                 <div class="form-row">
                   {{-- Email --}}

@@ -5,7 +5,10 @@ use App\Http\Controllers\Admin\GoodsController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\AuthController as ClientAuthController;
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\ProfileController;
+use App\Http\Controllers\Client\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,12 +27,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // ADMIN AREA
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::middleware(['guest'])->group(function () {
+        Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+        Route::post('/login', [AuthController::class, 'login']);
+    });
 
     Route::middleware(['auth', 'auth_admin'])->group(function () {
+        Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/home', [AdminHomeController::class, 'index'])->name('index');
 
 
@@ -45,7 +50,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
             Route::post('handle/{id}', [UserController::class, 'handleAccount'])->name('handle');
         });
 
-        Route::group(['as' => 'goods.', 'prefix' => 'hang-cuu-tro', 'middleware' => 'acl:goods.manage'], function() {
+        Route::group(['as' => 'goods.', 'prefix' => 'hang-cuu-tro', 'middleware' => 'acl:goods.manage'], function () {
             Route::get('index', [GoodsController::class, 'index'])->name('index');
             Route::get('create', [GoodsController::class, 'create'])->name('create');
             Route::post('create', [GoodsController::class, 'store'])->name('store');
@@ -53,7 +58,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
             Route::put('update/{id}', [GoodsController::class, 'update'])->name('update');
         });
 
-        Route::group(['as' => 'post.', 'prefix' => 'bai-viet', 'middleware' => 'acl:post.manage'], function() {
+        Route::group(['as' => 'post.', 'prefix' => 'bai-viet', 'middleware' => 'acl:post.manage'], function () {
             Route::get('index', [PostController::class, 'index'])->name('index');
             Route::get('create', [PostController::class, 'create'])->name('create');
             Route::post('create', [PostController::class, 'store'])->name('store');
@@ -65,4 +70,25 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 });
 
 // Client area
-Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::group([], function () {
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', [ClientAuthController::class, 'showLoginForm'])->name('login');
+        Route::post('/login', [ClientAuthController::class, 'login']);
+
+        Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
+        Route::post('/register', [RegisterController::class, 'register']);
+    });
+
+    Route::middleware(['auth', 'auth_client'])->group(function () {
+        Route::get('/logout', [ClientAuthController::class, 'logout'])->name('logout');
+
+        Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
+            Route::get('/', [ProfileController::class, 'info'])->name('info');
+            Route::put('/', [ProfileController::class, 'updateInfo']);
+            Route::get('/password', [ProfileController::class, 'showFormUpdatePassword'])->name('password');
+            Route::put('/password', [ProfileController::class, 'updatePassword']);
+        });
+    });
+});

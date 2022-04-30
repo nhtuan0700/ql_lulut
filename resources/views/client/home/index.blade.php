@@ -8,24 +8,24 @@ Trang chủ
 
   <div class="">
     @forelse ($posts as $post)
-      <div class="post bg-white p-3 rounded my-3">
-        <div class="user-block">
-          <img class="img-circle img-bordered-sm"
-            src="{{ asset('img/user.png') }}" alt="user image">
-          <span class="username">
-            <a href="#">Quản trị.</a>
-          </span>
-          <span class="description">{{ $post->created_at }}</span>
-        </div>
-        <!-- /.user-block -->
-        <h4>{{ $post->title }}</h4>
-        <p>
-          {{ $post->content }}
-        </p>
-        <div id="gallery-{{ $post->id }}"></div>
+    <div class="post bg-white p-3 rounded my-3">
+      <div class="user-block">
+        <img class="img-circle img-bordered-sm"
+          src="{{ asset('img/admin.png') }}" alt="user image">
+        <span class="username">
+          <a href="#">Quản trị.</a>
+        </span>
+        <span class="description">{{ $post->created_at }}</span>
       </div>
+      <!-- /.user-block -->
+      <h4>{{ $post->title }}</h4>
+      <p>
+        {{ $post->content }}
+      </p>
+      <div id="gallery-{{ $post->id }}"></div>
+    </div>
     @empty
-      Không có bài viết
+    Không có bài viết
     @endforelse
   </div>
 </div>
@@ -37,14 +37,13 @@ Trang chủ
 <script src="{{ asset('js/images-grid.js') }}"></script>
 <script>
   $(function() {
-      const posts = @json($posts);
-      console.log(posts)
-      posts.forEach(item => {
-        const images = item.images
-        $(`#gallery-${item.id}`).imagesGrid({
-            images: images.slice(0, images.length)
-        });
-      })
+    const posts = @json($posts);
+    posts.forEach(item => {
+      const images = item.images
+      $(`#gallery-${item.id}`).imagesGrid({
+          images: images.slice(0, images.length)
+      });
     })
+  })
 </script>
 @endsection

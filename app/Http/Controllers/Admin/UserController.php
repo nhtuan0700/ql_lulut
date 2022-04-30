@@ -58,7 +58,8 @@ class UserController extends Controller
                 ->with('alert-success', trans('alert.create.success'));
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
-            dd($th->getMessage());
+            // dd($th->getMessage());
+            return back()->with('alert-success', trans('alert.create.fail'));
         }
     }
 

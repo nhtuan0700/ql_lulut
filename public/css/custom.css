@@ -42,7 +42,7 @@
   font-size: unset;
 }
 .login-page {
-  height: 60vh;
+  /* height: 60vh; */
 }
 .preview-image .contain-image {
   max-width: 180px;

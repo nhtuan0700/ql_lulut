@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Period extends Model
 {
     use HasFactory;
+    public $incrementing = false;
+    protected $fillable = [
+        'name', 'description', 'date_end'
+    ];
 }

@@ -110,7 +110,8 @@
                     <select id="ward" class="form-control select2 @error('ward_id') is-invalid @enderror"
                       name="ward_id">
                       @foreach ($wards as $item)
-                        <option value="{{ $item->id }}" @if ($item->id === $user->ward_id) selected @endif
+                        <option value>Không có</option>
+                        <option value="{{ $item->id }}" @if ($item->id === $user->info->ward_id) selected @endif
                           data-room="{{ $item->is_room }}">
                           {{ $item->name }}
                         </option>

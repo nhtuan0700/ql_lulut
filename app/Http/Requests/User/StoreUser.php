@@ -31,7 +31,7 @@ class StoreUser extends FormRequest
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'role_id' => 'required|exists:roles,id',
-            'ward_id' => 'required|exists:wards,id',
+            'ward_id' => 'nullable|exists:wards,id',
         ];
     }
 

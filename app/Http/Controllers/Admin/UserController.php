@@ -59,7 +59,7 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
             // dd($th->getMessage());
-            return back()->with('alert-success', trans('alert.create.fail'));
+            return back()->with('alert-fail', trans('alert.create.fail'));
         }
     }
 
@@ -79,7 +79,7 @@ class UserController extends Controller
             $user->update([
                 'role_id' => $data['role_id']
             ]);
-            $user->info()->update([
+            $user->info->update([
                 'name' => $data['name'],
                 'phone_number' => $data['phone_number'],
                 'dob' => $data['dob'],

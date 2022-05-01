@@ -10,4 +10,12 @@ class Family extends Model
     use HasFactory;
 
     protected $table = 'families';
+
+    protected $fillable = [
+        'owner_name', 'person_qty', 'holdhouse_id', 'ward_id'
+    ];
+
+    public function ward() {
+        return $this->belongsTo(Ward::class, 'ward_id');
+    }
 }

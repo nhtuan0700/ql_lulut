@@ -31,7 +31,7 @@ function Validator(formSelector) {
       return regex.test(value) ? undefined : 'Định dạng ngày chưa hợp lệ';
     },
     phone: function (value) {
-      var regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+      var regex = /(84|0[1-9])+([0-9]{8})\b/g;
       return regex.test(value) ? undefined : `Số điện thoại chưa hợp lệ`
     },
     min: function (min, isNumber = false) {

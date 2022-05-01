@@ -16,7 +16,7 @@ class CreateFamilyPeriodTable extends Migration
         Schema::create('family_period', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('family_id');
-            $table->unsignedBigInteger('period_id');
+            $table->char('period_id', 6);
             $table->text('description')->nullable();
             $table->dateTime('received_at')->nullable();
             $table->unsignedTinyInteger('status')->default(0)->comment('0: pending | 1: accepted | 2: canceled');

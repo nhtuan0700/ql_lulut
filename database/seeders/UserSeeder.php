@@ -19,22 +19,33 @@ class UserSeeder extends Seeder
     {
         $data = [
             [
-                'email' => 'admin@test.com',
+                'email' => 'phuc@test.com',
                 'password' => Hash::make('123123'),
                 'role_id' => Role::ADMIN
             ],
             [
-                'email' => 'phuc@test.com',
+                'email' => 'phuc+1@test.com',
+                'password' => Hash::make('123123'),
+                'role_id' => Role::STAFF
+            ],
+            [
+                'email' => 'phuc+2@test.com',
+                'password' => Hash::make('123123'),
+                'role_id' => Role::CADRES
+            ],
+            [
+                'email' => 'phuc+3@test.com',
                 'password' => Hash::make('123123'),
                 'role_id' => Role::SUPPORTER
             ]
         ];
         
-        foreach ($data as $item) {
+        foreach ($data as $key => $item) {
             $user = User::create($item);
             UserInfo::create([
                 'user_id' => $user->id,
-                'name' => 'Trịnh Quang Phúc'
+                'name' => "Trịnh Quang Phúc $key",
+                'ward_id' => $item['role_id'] === Role::CADRES ? 1 : null
             ]);
         }
 

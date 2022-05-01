@@ -25,6 +25,9 @@ class PermissionSeeder extends Seeder
                 'name' => 'goods.manage'
             ],
             [
+                'name' => 'period.manage'
+            ],
+            [
                 'name' => 'registration.manage'
             ],
             [
@@ -34,7 +37,7 @@ class PermissionSeeder extends Seeder
                 'name' => 'family.manage'
             ],
             [
-                'name' => 'family.confirm'
+                'name' => 'family.registration'
             ],
             [
                 'name' => 'registration.create'

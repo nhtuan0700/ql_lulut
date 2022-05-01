@@ -15,7 +15,7 @@ class CreateSupportsTable extends Migration
     {
         Schema::create('supports', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('period_id');
+            $table->char('period_id', 6);
             $table->unsignedSmallInteger('ward_id');
             $table->unsignedTinyInteger('status')->default(0)->comment('0: pending | 1: accepted | 2: canceled');
 

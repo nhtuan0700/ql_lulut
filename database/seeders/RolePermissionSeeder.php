@@ -24,7 +24,8 @@ class RolePermissionSeeder extends Seeder
                     'goods.manage',
                     'registration.manage',
                     'post.manage',
-                    'family.confirm'
+                    'family.manage',
+                    'period.manage'
                 ],
             ],
             [
@@ -36,7 +37,7 @@ class RolePermissionSeeder extends Seeder
             [
                 'role_id' => Role::CADRES,
                 'permissions' => [
-                    'family.manage'
+                    'family.registration'
                 ],
             ],
             [

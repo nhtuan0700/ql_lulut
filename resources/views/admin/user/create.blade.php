@@ -92,6 +92,7 @@
                   <div class="form-group col-md-3">
                     <label for="ward_id">Xã:</label>
                     <select id="ward_id" class="form-control  @error('ward_id') is-invalid @enderror" name="ward_id">
+                      <option value>Không có</option>
                       @foreach ($wards as $ward)
                         <option value="{{ $ward->id }}" @if ($ward->id == old('ward_id')) selected @endif>
                           {{ $ward->name }}

@@ -53,6 +53,24 @@
             </a>
           </li>
         @endcan
+        @can('period.manage')
+          <li class="nav-item">
+            <a href="{{ route('admin.period.index') }}" class="nav-link" data-link="dot-ung-ho">
+              <p>
+                Quản lý đợt ủng hộ
+              </p>
+            </a>
+          </li>
+        @endcan
+        @can('family.manage')
+          <li class="nav-item">
+            <a href="{{ route('admin.family.index') }}" class="nav-link" data-link="gia-dinh">
+              <p>
+                Quản lý hộ gia đình
+              </p>
+            </a>
+          </li>
+        @endcan
       </ul>
     </nav>
   </div>

@@ -16,7 +16,7 @@ class CreateRegistrationSupportsTable extends Migration
         Schema::create('registration_supports', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('period_id');
+            $table->char('period_id', 6)->nullable();
             $table->text('description')->nullable();
             $table->tinyInteger('status')->default(0)->comment('0: pending | 1: finished | 2: caneled');
 

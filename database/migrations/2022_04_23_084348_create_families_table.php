@@ -17,7 +17,8 @@ class CreateFamiliesTable extends Migration
             $table->id();
             $table->string('owner_name');
             $table->unsignedTinyInteger('person_qty');
-            $table->string('holdhouse_id');
+            $table->string('holdhouse_id')->unique();
+            $table->string('address')->nullable();
             $table->unsignedSmallInteger('ward_id');
             $table->timestamps();
 

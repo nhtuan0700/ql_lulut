@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\FamilyController;
 use App\Http\Controllers\Admin\GoodsController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\PeriodController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\AuthController as ClientAuthController;
@@ -65,6 +67,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::get('edit/{id}', [PostController::class, 'edit'])->name('edit');
             Route::put('update/{id}', [PostController::class, 'update'])->name('update');
             Route::delete('delete/{id}', [PostController::class, 'delete'])->name('delete');
+        });
+
+        Route::group(['as' => 'period.', 'prefix' => 'dot-ung-ho', 'middleware' => 'acl:period.manage'], function () {
+            Route::get('index', [PeriodController::class, 'index'])->name('index');
+            Route::get('create', [PeriodController::class, 'create'])->name('create');
+            Route::post('create', [PeriodController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [PeriodController::class, 'edit'])->name('edit');
+            Route::put('update/{id}', [PeriodController::class, 'update'])->name('update');
+            Route::delete('delete/{id}', [PeriodController::class, 'delete'])->name('delete');
+        });
+
+        Route::group(['as' => 'family.', 'prefix' => 'gia-dinh', 'middleware' => 'acl:family.manage'], function () {
+            Route::get('index', [FamilyController::class, 'index'])->name('index');
+            Route::get('edit/{id}', [FamilyController::class, 'edit'])->name('edit');
+            Route::put('update/{id}', [FamilyController::class, 'update'])->name('update');
         });
     });
 });

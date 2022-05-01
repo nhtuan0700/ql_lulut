@@ -15,7 +15,7 @@ class CreateTransactionHistoryTable extends Migration
     {
         Schema::create('transaction_history', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('period_id');
+            $table->char('period_id', 6)->nullable();
             $table->decimal('money', 12, 0);
             $table->unsignedTinyInteger('type')->comment('0: deposit | 1: withdraw');
             $table->timestamps();

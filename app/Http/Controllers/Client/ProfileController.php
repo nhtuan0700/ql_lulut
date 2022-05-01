@@ -19,7 +19,7 @@ class ProfileController extends Controller
     public function updateInfo(UpdateInfo $request)
     {
         $data = $request->validated();
-        auth()->user()->info()->update($data);
+        auth()->user()->info->update($data);
         return back()->with('alert-success', trans('alert.update.success'));
     }
 

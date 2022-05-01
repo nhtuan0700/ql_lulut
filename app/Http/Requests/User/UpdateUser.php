@@ -30,7 +30,7 @@ class UpdateUser extends FormRequest
             'dob' => 'required|date_format:d/m/Y',
             'card_id' => 'required|string|min:9|max:12',
             'role_id' => 'required|exists:roles,id',
-            'ward_id' => 'required|exists:wards,id',
+            'ward_id' => 'nullable|exists:wards,id',
         ];
     }
 

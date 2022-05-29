@@ -38,7 +38,7 @@
             <div class="col-sm-6">
               <h1 class="m-0">@yield('title')</h1>
             </div>
-            @include('client.components.breadcrumb')
+            {{-- @include('client.components.breadcrumb') --}}
           </div>
         </div>
       </div>

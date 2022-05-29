@@ -22,16 +22,17 @@ class RolePermissionSeeder extends Seeder
                 'permissions' => [
                     'user.manage',
                     'goods.manage',
-                    'registration.manage',
                     'post.manage',
-                    'family.manage',
-                    'period.manage'
+                    'family.manage'
                 ],
             ],
             [
-                'role_id' => Role::STAFF,
+                'role_id' => Role::MANAGER,
                 'permissions' => [
-                    'stock.manage'
+                    'registration.manage',
+                    'period.manage',
+                    'family.confirm',
+                    'registation.confirm',
                 ],
             ],
             [
@@ -39,13 +40,7 @@ class RolePermissionSeeder extends Seeder
                 'permissions' => [
                     'family.registration'
                 ],
-            ],
-            [
-                'role_id' => Role::SUPPORTER,
-                'permissions' => [
-                    'registration.create',
-                ],
-            ],
+            ]
         ];
         foreach ($role_permissions as $item) {
             $permissions = Permission::whereIn('name', $item['permissions'])->select('id')->get();

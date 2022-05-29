@@ -17,7 +17,7 @@ function Validator(formSelector) {
       return value ? undefined : 'Trường này không được để trống'
     },
     email: function (value) {
-      var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return regex.test(value) ? undefined : 'Trường này phải là email'
     },
     confirm: function (selector) {

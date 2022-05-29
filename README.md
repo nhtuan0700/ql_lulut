@@ -7,26 +7,24 @@
 6. `php artisan serve`
 
 # List account test:
-1. Admin: phuc@test.com/123123
-2. Nhân viên kho: phuc+1@test.com/123123
+1. Quản trị viên: phuc@test.com/123123
+2. Cán bộ quản lý phân phối: phuc+1@test.com/123123
 3. Cán bộ: phuc+2@test.com/123123
 4. Người ủng hộ: phuc+3@test.com/123123
 
 # use case
-1. Admin
+1. Quản trị viên
   - Quản lý tài khoản hệ thống - x
-  - Bài viết - x
   - Quản lý hộ gia đình - x
+  - Bài viết - x
+2. Cán bộ quản lý phân phối
   - Quản lý đợt ủng hộ
   - Duyệt:
     + Các gia đình được cứu trợ
     + Đăng ký ủng hộ
-2. Nhân viên kho
-  - Cập nhật phiếu nhập
-  - Cập nhật phiếu phân phối hàng cứu trợ
-3. Cán bộ
-  - Cập nhật danh sách hộ gia đình cần được cứu trợ
-  - Xác nhận phân phối hàng cứu trợ tại đơn vị
+3. Cán bộ phường
+  - Cập nhật danh sách hộ gia đình cần được cứu trợ 
+  - Xác nhận phân phối hàng cứu trợ tại đơn vị 
 4. Người ủng hộ
   - Đăng ký ủng hộ
   - Xem lịch sử đã đăng ký ủng hộ

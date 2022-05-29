@@ -29,7 +29,7 @@ class GoodsSeeder extends Seeder
                 'unit' => 'Cái'
             ],
             [
-                'name' => 'Nước uống',
+                'name' => 'Nước suối',
                 'qty' => 20,
                 'unit' => 'Thùng'
             ]

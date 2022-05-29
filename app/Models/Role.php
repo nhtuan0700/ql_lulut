@@ -10,7 +10,7 @@ class Role extends Model
     use HasFactory;
 
     public const ADMIN = 1;
-    public const STAFF = 2;
+    public const MANAGER = 2;
     public const CADRES = 3;
     public const SUPPORTER = 4;
 

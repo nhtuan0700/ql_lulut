@@ -31,17 +31,11 @@ class PermissionSeeder extends Seeder
                 'name' => 'registration.manage'
             ],
             [
-                'name' => 'stock.manage'
-            ],
-            [
                 'name' => 'family.manage'
             ],
             [
                 'name' => 'family.registration'
-            ],
-            [
-                'name' => 'registration.create'
-            ],
+            ]
         ];
         Permission::insert($data);
     }

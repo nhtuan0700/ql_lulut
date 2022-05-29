@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             [
                 'email' => 'phuc+1@test.com',
                 'password' => Hash::make('123123'),
-                'role_id' => Role::STAFF
+                'role_id' => Role::MANAGER
             ],
             [
                 'email' => 'phuc+2@test.com',

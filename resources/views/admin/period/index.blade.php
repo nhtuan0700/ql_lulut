@@ -21,7 +21,6 @@
                   <tr>
                     <th scope="col">Mã</th>
                     <th scope="col">Tên đợt ủng hộ</th>
-                    <th scope="col">Thời gian bắt đầu</th>
                     <th scope="col">Thời gian kết thúc</th>
                     <th scope="col">Trạng thái</th>
                     <th scope="col" class="fit">Thao tác</th>
@@ -31,9 +30,8 @@
                   @foreach ($periods as $item)
                     <tr>
                       <th>{{ $item->id }}</th>
-                      <td>{{ $item->created_at }}</td>
-                      <td>{{ $item->start_time }}</td>
-                      <td>{{ $item->end_time }}</td>
+                      <td>{{ $item->name }}</td>
+                      <td>{{ $item->date_end }}</td>
                       <td>{!! $item->statusHTML !!}</td>
                       <td>
                         <div class="d-flex justify-content-center">

@@ -13,7 +13,7 @@ class UpdatePeriod extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class UpdatePeriod extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|min:10',
+            'date_end' => 'required'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'tên',
+            'date_end' => 'ngày kết thúc'
         ];
     }
 }

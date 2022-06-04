@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             RolePermissionSeeder::class,
             UserSeeder::class,
             GoodsSeeder::class,
-            FamilySeeder::class
+            FamilySeeder::class,
+            PeriodSeeder::class
         ]);
     }
 }

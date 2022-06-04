@@ -18,7 +18,7 @@ class CreateRegistrationSupportsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->char('period_id', 6)->nullable();
             $table->text('description')->nullable();
-            $table->tinyInteger('status')->default(0)->comment('0: pending | 1: finished | 2: caneled');
+            $table->tinyInteger('status')->default(1)->comment('1: pending | 2: finished | 3: canceled');
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('period_id')->references('id')->on('periods');

@@ -27,8 +27,7 @@ class PeriodController extends Controller
         $new_period = Period::create([
             'id' => $this->getNewId(),
             'name' => $request->name,
-            'description' => $request->description,
-
+            'date_end' => $request->date_end
         ]);
         return redirect(route('admin.period.edit', ['id' => $new_period->id]))
             ->with('alert-success', trans('alert.create.success'));
@@ -37,14 +36,13 @@ class PeriodController extends Controller
     public function edit($id)
     {
         $period = Period::findOrFail($id);
-        dd($period);
         return view('admin.period.edit', compact('period'));
     }
 
     public function update(UpdatePeriod $request, $id)
     {
         $period = Period::findOrFail($id);
-
+        $period->update($request->validated());
         return back()->with('alert-success', trans('alert.update.success'));
     }
 

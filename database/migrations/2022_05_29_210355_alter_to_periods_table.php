@@ -14,7 +14,7 @@ class AlterToPeriodsTable extends Migration
     public function up()
     {
         Schema::table('periods', function (Blueprint $table) {
-            $table->dropColumn('date_start');
+            $table->dropColumn(['date_start', 'description']);
         });
     }
 
@@ -26,6 +26,7 @@ class AlterToPeriodsTable extends Migration
     public function down()
     {
         Schema::table('periods', function (Blueprint $table) {
+            $table->text('description')->nullable();
             $table->date('date_start')->nullable();
         });
     }

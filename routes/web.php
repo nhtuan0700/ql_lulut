@@ -11,6 +11,7 @@ use App\Http\Controllers\Client\AuthController as ClientAuthController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Client\RegisterController;
+use App\Http\Controllers\Client\RegistrationSupportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -100,6 +101,9 @@ Route::group([], function () {
 
     Route::middleware(['auth', 'auth_client'])->group(function () {
         Route::get('/logout', [ClientAuthController::class, 'logout'])->name('logout');
+        Route::get('dang-ky-ung-ho', [RegistrationSupportController::class, 'index'])->name('registration');
+        Route::get('lich-su', [RegistrationSupportController::class, 'history'])->name('history');
+        Route::post('dang-ky-ung-ho', [RegistrationSupportController::class, 'save']);
 
         Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
             Route::get('/', [ProfileController::class, 'info'])->name('info');

@@ -28,38 +28,7 @@ Quản lý đợt ủng hộ
                 </div>
                 @enderror
               </div>
-              <div class="form-group">
-                <label for="description">Mô tả:</label>
-                <input type="text"
-                  class="form-control @error('description') is-invalid @enderror"
-                  id="description" name="description"
-                  value="{{ old('description')}}" maxlength="10">
-                @error('description')
-                <div class="invalid-feedback">
-                  {{ $message }}
-                </div>
-                @enderror
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-3">
-                  <label for="date_start">Thời gian bắt đầu:</label>
-                  <div class="input-group date" id="date_start"
-                    data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input"
-                      data-target="#date_start" name="date_start"
-                      autocomplete="off" rules="required" />
-                    <div class="input-group-append" data-target="#date_start"
-                      data-toggle="datetimepicker">
-                      <div class="input-group-text"><i
-                          class="fa fa-calendar"></i></div>
-                    </div>
-                  </div>
-                  @error('date_start')
-                  <div class="invalid-feedback d-block">
-                    {{ $message }}
-                  </div>
-                  @enderror
-                </div>
+              <div class="row">
                 <div class="form-group col-md-3">
                   <label for="date_end">Thời gian kết thúc:</label>
                   <div class="input-group date" id="date_end"
@@ -119,9 +88,6 @@ Quản lý đợt ủng hộ
       var date = ("0" + d.getDate()).slice(-2);
       var month = ("0" + (d.getMonth() + 1)).slice(-2);
       var year = d.getFullYear();
-
-      var date_start = `{{ old('date_start') }}` || `${date}/${month}/${year}`;
-      $("#date_start input").val(date_start);
 
       $('#date_end').datetimepicker({
         icons: {

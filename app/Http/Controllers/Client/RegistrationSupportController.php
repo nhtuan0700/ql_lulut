@@ -16,7 +16,7 @@ class RegistrationSupportController extends Controller
 {
     public function index()
     {
-        $periods = Period::whereDate('date_end', '>', now())->get();
+        $periods = Period::whereDate('date_end', '>=', now())->get();
         $goods = Goods::all();
         return view('client.registration_support.index', compact('periods', 'goods'));
     }

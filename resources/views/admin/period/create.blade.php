@@ -20,7 +20,7 @@ Quản lý đợt ủng hộ
                 <label for="name">Tên đợt ủng hộ:</label>
                 <input type="text"
                   class="form-control @error('name') is-invalid @enderror"
-                  id="name" name="name" value="{{ old('name')}}" maxlength="10"
+                  id="name" name="name" value="{{ old('name')}}"
                   rules="required|min:10">
                 @error('name')
                 <div class="invalid-feedback">

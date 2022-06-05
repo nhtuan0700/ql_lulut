@@ -13,7 +13,7 @@ class UserInfo extends Model
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        'name', 'gender', 'dob', 'phone_number', 'ward_id', 'user_id', 'card_id'
+        'name', 'gender', 'dob', 'phone_number', 'ward_id', 'user_id', 'card_id', 'address'
     ];
 
     public function getDobAttribute($value)
@@ -30,5 +30,9 @@ class UserInfo extends Model
 
     public function ward() {
         return $this->belongsTo(Ward::class, 'ward_id');
+    }
+
+    public function company() {
+        return $this->hasOne(Company::class, 'user_id', 'user_id');
     }
 }

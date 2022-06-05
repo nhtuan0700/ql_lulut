@@ -35,7 +35,7 @@ Quản lý đợt ủng hộ
                 <label for="date_end">Thời gian kết thúc:</label>
                 <div class="input-group date" id="date_end" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input" data-target="#date_end" name="date_end"
-                    autocomplete="off" rules="required" />
+                    autocomplete="off" rules="required" value="{{ $period->date_end }}"/>
                   <div class="input-group-append" data-target="#date_end" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                   </div>
@@ -91,7 +91,7 @@ Quản lý đợt ủng hộ
       format: 'L',
     })
 
-    var date_end = `{{ old('date_end') }}` || `${date}/${month}/${year}`
+    var date_end = `{{ old('date_end') }}` || `{{ $period->date_end }}`
     $("#date_end input").val(date_end)
   })
 </script>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateInfo;
 use App\Http\Requests\User\UpdatePassword;
+use App\Models\Company;
+use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,8 +20,17 @@ class ProfileController extends Controller
 
     public function updateInfo(UpdateInfo $request)
     {
-        $data = $request->validated();
-        auth()->user()->info->update($data);
+        $dataInfo = $request->only('name', 'address', 'card_id', 'phone_number', 'dob');
+        $userInfo = UserInfo::where('user_id', auth()->id())->first();
+        $userInfo->update($dataInfo);
+        if ($request->type == 2) {
+            Company::updateOrCreate(['user_id' => auth()->id()], [
+                'name' => $request->company_name,
+                'address' => $request->company_address,
+            ]);
+        } else {
+            Company::where('user_id', auth()->id())->delete();
+        }
         return back()->with('alert-success', trans('alert.update.success'));
     }
 

@@ -6,9 +6,9 @@ Lịch sử ủng hộ
   @foreach ($registrationSupports as $item)
     <div>
       <h3 class="text-primary">{{ $item->created_date }}</h3>
+      <h5>{{ $item->period->id }} - {{ $item->period->ward->name }} - {{ $item->period->name }} - Kết thúc: {{ $item->period->date_end }}</h5>
 
       <p><b>Trạng thái: </b>{!! $item->statusHTML !!}</p>
-
       <b class="text-info">Nội dung ủng hộ</b>
       <p><b>Số tiền: </b>{{ formatCurrency($item->detailMoney->money) }}</p>
       <table class="table" id="tableModal">

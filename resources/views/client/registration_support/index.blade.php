@@ -10,7 +10,7 @@
       <select class="custom-select" name="period_id" id="period_id">
         @foreach ($periods as $period)
           <option value="{{ $period->id }}">
-            {{ $period->id }} - {{ $period->name }} - Kết thúc: {{ $period->date_end }}
+            {{ $period->id }} - {{ $period->ward->name }} - {{ $period->name }} - Kết thúc: {{ $period->date_end }}
           </option>
         @endforeach
       </select>

@@ -24,6 +24,11 @@ class Period extends Model
         $this->attributes['date_end'] =  Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
     }
 
+    public function ward()
+    {
+        return $this->belongsTo(Ward::class, 'ward_id');
+    }
+
     public function getStatus()
     {
         if ($this->getRawOriginal('date_end') >= now()) {

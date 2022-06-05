@@ -14,6 +14,12 @@ class RegistrationSupport extends Model
         'user_id', 'period_id', 'status'
     ];
 
+    
+    public function period()
+    {
+        return $this->belongsTo(Period::class, 'period_id');
+    }
+
     public function getCreatedDateAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y');

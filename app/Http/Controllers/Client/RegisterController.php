@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Company;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserInfo;
@@ -23,15 +24,23 @@ class RegisterController extends Controller
     {
         try {
             DB::transaction(function () use ($request) {
-                $new_user = User::create([
+                $newUser = User::create([
                     'email' => $request->email,
                     'password' => bcrypt($request->password),
                     'role_id' => Role::SUPPORTER
                 ]);
                 UserInfo::create([
                     'name' => $request->name,
-                    'user_id' => $new_user->id
+                    'user_id' => $newUser->id,
+                    'phone_number' => $request->phone_number
                 ]);
+                if ($request->type == 2) {
+                    Company::create([
+                        'user_id' => $newUser->id,
+                        'name' => $request->company_name, 
+                        'address' => $request->company_address 
+                    ]);
+                }
             });
 
             return redirect(route('login'))->with('alert-success', trans('alert.register.success'));

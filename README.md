@@ -20,8 +20,8 @@
 2. Cán bộ quản lý phân phối
   - Quản lý đợt ủng hộ
   - Duyệt:
-    + Các gia đình được cứu trợ
     + Đăng ký ủng hộ
+  - Phân bố hàng cứu trợ cho xã yêu cầu
 3. Cán bộ phường
   - Cập nhật danh sách hộ gia đình cần được cứu trợ 
   - Xác nhận phân phối hàng cứu trợ tại đơn vị 

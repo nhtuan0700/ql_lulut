@@ -7,7 +7,6 @@ use App\Http\Requests\Period\StorePeriod;
 use App\Http\Requests\Period\UpdatePeriod;
 use App\Models\Period;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class PeriodController extends Controller
 {
@@ -42,6 +41,9 @@ class PeriodController extends Controller
     public function update(UpdatePeriod $request, $id)
     {
         $period = Period::findOrFail($id);
+        if ($period->getRawOriginal('date_end') < now()) {
+            return back()->with('alert-fail', 'Không thể cập nhật!');
+        }
         $period->update($request->validated());
         return back()->with('alert-success', trans('alert.update.success'));
     }

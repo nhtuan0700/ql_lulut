@@ -62,12 +62,58 @@
                 <span class="fas fa-phone"></span>
               </div>
             </div>
-            @error('name')
+            @error('address')
             <div class="invalid-feedback">
               {{ $message }}
             </div>
             @enderror
           </div>
+          <div class="form-group">
+            <select class="form-control" id="type" name="type">
+              <option value="1">Đại diện cá nhân</option>
+              <option value="2">Đại diện công ty/tổ chức</option>
+            </select>
+          </div>
+          {{-- Cá nhân --}}
+          <div class="" id="personal">
+            <div class="mb-3 form-group">
+              <input type="text"
+                class="form-control @error('address') is-invalid @enderror"
+                placeholder="Địa chỉ" name="address"
+                value="{{ old('address') }}">
+              @error('address')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+              @enderror
+            </div>
+          </div>
+          {{-- Tổ chức --}}
+          <div class="" id="organize">
+            <div class="mb-3 form-group">
+              <input type="text"
+                class="form-control @error('company_name') is-invalid @enderror"
+                placeholder="Tên công ty/tổ chức" name="company_name"
+                value="{{ old('company_name') }}">
+              @error('company_name')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+              @enderror
+            </div>
+            <div class="mb-3 form-group">
+              <input type="text"
+                class="form-control @error('company_address') is-invalid @enderror"
+                placeholder="Địa chỉ công ty/tổ chức" name="company_address"
+                value="{{ old('company_address') }}">
+              @error('company_address')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+              @enderror
+            </div>
+          </div>
+          
           <div class="input-group mb-3 form-group">
             <input type="text"
               class="form-control @error('email') is-invalid @enderror"
@@ -126,7 +172,32 @@
 <script src="{{ asset('js/validator.js') }}"></script>
 <script>
   $(function() {
-    const validator = new Validator('form');
+    if ($('#type').val() == 2) {
+      $('#organize').removeClass('d-none')
+      $('#personal').addClass('d-none')
+      $('#organize').find('input').attr('rules', 'required')
+    } else {
+      $('#organize').addClass('d-none')
+      $('#personal').removeClass('d-none')
+      $('#personal').find('input').attr('rules', 'required')
+    }
+    new Validator('form');
+
+    $('#type').change(function() {
+      if ($(this).val() == 2) {
+        $('#organize').removeClass('d-none')
+        $('#personal').addClass('d-none')
+        $('#personal').find('input').removeAttr('rules')
+        $('#organize').find('input').attr('rules', 'required')
+        new Validator('form');
+      } else {
+        $('#organize').addClass('d-none')
+        $('#personal').removeClass('d-none')
+        $('#organize').find('input').removeAttr('rules')
+        $('#personal').find('input').attr('rules', 'required')
+        new Validator('form');
+      }
+    })
   })
 </script>
 @if (session('alert-success'))

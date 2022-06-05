@@ -26,7 +26,6 @@ class UpdateInfo extends FormRequest
         return  [
             'name' => 'required|string',
             'phone_number' => 'required|regex:/[0-9]{10}/',
-            'address' => 'required',
             'dob' => 'required|date_format:d/m/Y',
             'card_id' => 'required|string|min:9|max:12',
         ];

@@ -20,16 +20,17 @@ class PeriodSeeder extends Seeder
         $data = [
             [
                 'id' => '220201',
+                'ward_id' => 3,
                 'name' => 'Quyên góp hỗ trợ tháng 2',
                 'date_end' => '2022-03-15',
             ],
             [
                 'id' => '220501',
+                'ward_id' => 1,
                 'name' => 'Quyên góp hỗ trợ bà con nghèo tháng 5',
                 'date_end' => '2022-06-30',
             ]
         ];
-
         DB::table('periods')->insert($data);
     }
 }

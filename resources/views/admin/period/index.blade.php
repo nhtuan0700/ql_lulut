@@ -21,6 +21,7 @@
                   <tr>
                     <th scope="col">Mã</th>
                     <th scope="col">Tên đợt ủng hộ</th>
+                    <th scope="col">Xã</th>
                     <th scope="col">Thời gian kết thúc</th>
                     <th scope="col">Trạng thái</th>
                     <th scope="col" class="fit">Thao tác</th>
@@ -31,6 +32,7 @@
                     <tr>
                       <th>{{ $item->id }}</th>
                       <td>{{ $item->name }}</td>
+                      <td>{{ $item->ward->name }}</td>
                       <td>{{ $item->date_end }}</td>
                       <td>{!! $item->statusHTML !!}</td>
                       <td>

@@ -71,6 +71,15 @@
             </a>
           </li>
         @endcan
+        @can('registration.manage')
+          <li class="nav-item">
+            <a href="{{ route('admin.family.index') }}" class="nav-link" data-link="gia-dinh">
+              <p>
+                Quản lý đăng ký ủng hộ
+              </p>
+            </a>
+          </li>
+        @endcan
       </ul>
     </nav>
   </div>

@@ -65,14 +65,51 @@
         @enderror
       </div>
       <div class="form-group">
-        <label for="address">Địa chỉ:</label>
-        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
-          value="{{ old('address') ?? $user->info->address }}" rules="required">
-        @error('address')
+        <label for="type">Đại diện</label>
+        <select class="form-control" name="type" id="type">
+          <option value="1" @if(is_null(auth()->user()->info->company)) selected @endif>Đại diện cá nhân</option>
+          <option value="2" @if(!is_null(auth()->user()->info->company)) selected @endif>Đại diện công ty/tổ chức</option>
+        </select>
+      </div>
+      
+      {{-- Cá nhân --}}
+      <div class="" id="personal">
+        <div class="form-group">
+          <label for="address">Địa chỉ:</label>
+          <input type="text"
+            class="form-control @error('address') is-invalid @enderror"
+            name="address" value="{{ old('address') ?? auth()->user()->info->address }}">
+          @error('address')
           <div class="invalid-feedback">
             {{ $message }}
           </div>
-        @enderror
+          @enderror
+        </div>
+      </div>
+      {{-- Tổ chức --}}
+      <div class="" id="organize">
+        <div class="mb-3 form-group">
+          <label for="company_name">Tên công ty/tổ chức</label>
+          <input type="text"
+            class="form-control @error('company_name') is-invalid @enderror"
+            name="company_name" value="{{ old('company_name') ?? optional(auth()->user()->info->company)->name }}" >
+          @error('company_name')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+          @enderror
+        </div>
+        <div class="mb-3 form-group">
+          <label for="company_address">Địa chỉ công ty/tổ chức</label>
+          <input type="text"
+            class="form-control @error('company_address') is-invalid @enderror"
+            name="company_address" value="{{ old('company_address') ?? optional(auth()->user()->info->company)->address }}" >
+          @error('company_address')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+          @enderror
+        </div>
       </div>
       {{-- Email --}}
       <div class="form-group">
@@ -97,7 +134,6 @@
 <script src="{{ asset('js/vi.js') }}"></script>
 <script>
   $(function() {
-    const validator = new Validator('#formInfo');
     $('#dob').datetimepicker({
       icons: {
         time: 'far fa-clock'
@@ -107,6 +143,33 @@
     });
     var dob = `{{ old('dob') }}` || `{{ $user->info->dob }}`
     $("#dob input").val(dob);
+
+    if ($('#type').val() == 2) {
+      $('#organize').removeClass('d-none')
+      $('#personal').addClass('d-none')
+      $('#organize').find('input').attr('rules', 'required')
+    } else {
+      $('#organize').addClass('d-none')
+      $('#personal').removeClass('d-none')
+      $('#personal').find('input').attr('rules', 'required')
+    }
+    new Validator('#formInfo');
+
+    $('#type').change(function() {
+      if ($(this).val() == 2) {
+        $('#organize').removeClass('d-none')
+        $('#personal').addClass('d-none')
+        $('#personal').find('input').removeAttr('rules')
+        $('#organize').find('input').attr('rules', 'required')
+        new Validator('#formInfo');
+      } else {
+        $('#organize').addClass('d-none')
+        $('#personal').removeClass('d-none')
+        $('#organize').find('input').removeAttr('rules')
+        $('#personal').find('input').attr('rules', 'required')
+        new Validator('#formInfo');
+      }
+    })
   })
 </script>
 @endpush

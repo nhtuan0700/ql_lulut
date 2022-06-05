@@ -3,72 +3,74 @@
 Đăng ký ủng hộ
 @endsection
 @section('content')
-  <form action="{{ route('registration') }}" method="POST">
-    @csrf
-    <div class="form-group">
-      <label for="period_id">Đợt ủng hộ</label>
-      <select class="custom-select" name="period_id" id="period_id">
-        @foreach ($periods as $period)
-          <option value="{{ $period->id }}">
-            {{ $period->id }} - {{ $period->ward->name }} - {{ $period->name }} - Kết thúc: {{ $period->date_end }}
-          </option>
-        @endforeach
-      </select>
-    </div>
-    <div>
-      <p class="font-weight-bold">Danh sách ủng hộ</p>
-      
-      <button type="button" class="btn btn-info mb-1" data-toggle="modal" data-target="#modal">
-        Thêm
-      </button>
-      <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel">
-                Danh sách hàng hóa hỗ trợ
-              </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <table class="table" id="tableModal">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Tên hàng hóa</th>
-                    <th>Đơn vị tính</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
+  <div class="my-3">
+    <form action="{{ route('registration') }}" method="POST">
+      @csrf
+      <div class="form-group">
+        <label for="period_id">Đợt ủng hộ</label>
+        <select class="custom-select" name="period_id" id="period_id">
+          @foreach ($periods as $period)
+            <option value="{{ $period->id }}">
+              {{ $period->id }} - {{ $period->ward->name }} - {{ $period->name }} - Kết thúc: {{ $period->date_end }}
+            </option>
+          @endforeach
+        </select>
+      </div>
+      <div>
+        <p class="font-weight-bold">Danh sách ủng hộ</p>
+        
+        <button type="button" class="btn btn-info mb-1" data-toggle="modal" data-target="#modal">
+          Thêm
+        </button>
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">
+                  Danh sách hàng hóa hỗ trợ
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="table" id="tableModal">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Tên hàng hóa</th>
+                      <th>Đơn vị tính</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
+        <table class="table" id="tableData">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Tên hàng hóa</th>
+              <th scope="col">Đơn vị tính</th>
+              <th scope="col">Số lượng</th>
+              <th scope="col">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </div>
-      <table class="table" id="tableData">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Tên hàng hóa</th>
-            <th scope="col">Đơn vị tính</th>
-            <th scope="col">Số lượng</th>
-            <th scope="col">Thao tác</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-    <div class="form-group">
-      <label for="money">Số tiền muốn ủng hộ</label>
-      <input type="text" class="form-control" name="money" placeholder="100,000" data-type="currency">
-    </div>
-    <button class="btn btn-primary">Lưu</button>
-  </form>
+      <div class="form-group">
+        <label for="money">Số tiền muốn ủng hộ</label>
+        <input type="text" class="form-control" name="money" placeholder="100,000" data-type="currency">
+      </div>
+      <button class="btn btn-primary">Lưu</button>
+    </form>
+  </div>
 @endsection
 @section('script')
   <script src="{{ asset('js/validator.js') }}"></script>

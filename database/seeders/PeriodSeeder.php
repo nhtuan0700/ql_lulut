@@ -19,14 +19,20 @@ class PeriodSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $data = [
             [
-                'id' => '220201',
-                'ward_id' => 3,
-                'name' => 'Quyên góp hỗ trợ tháng 2',
-                'date_end' => '2022-03-15',
-            ],
-            [
                 'id' => '220501',
                 'ward_id' => 1,
+                'name' => 'Quyên góp hỗ trợ bà con nghèo tháng 5',
+                'date_end' => '2022-06-30',
+            ],
+            [
+                'id' => '220502',
+                'ward_id' => 2,
+                'name' => 'Quyên góp hỗ trợ bà con nghèo tháng 5',
+                'date_end' => '2022-06-30',
+            ],
+            [
+                'id' => '220503',
+                'ward_id' => 3,
                 'name' => 'Quyên góp hỗ trợ bà con nghèo tháng 5',
                 'date_end' => '2022-06-30',
             ]

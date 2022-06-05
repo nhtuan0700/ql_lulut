@@ -73,7 +73,7 @@
         @endcan
         @can('registration.manage')
           <li class="nav-item">
-            <a href="{{ route('admin.family.index') }}" class="nav-link" data-link="gia-dinh">
+            <a href="{{ route('admin.registration.index') }}" class="nav-link" data-link="dang-ky">
               <p>
                 Quản lý đăng ký ủng hộ
               </p>

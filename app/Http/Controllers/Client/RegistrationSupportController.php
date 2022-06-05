@@ -56,11 +56,24 @@ class RegistrationSupportController extends Controller
         }
     }
 
+    public function cancel($id) 
+    {
+        $registration = RegistrationSupport::findOrFail($id);
+        if ($registration->status === RegistrationStatus::PROCESSING) {
+            $registration->update([
+                'status' => RegistrationStatus::CANCEL
+            ]);
+            return back()->with('alert-success', 'Hủy thành công');
+        }
+        return back()->with('alert-fail', 'Không thể hủy');
+    }
+
     public function history()
     {
         $registrationSupports = RegistrationSupport::query()
             ->selectRaw('*, DATE(created_at) as created_date')
             ->where('user_id', auth()->id())
+            ->orderby('created_at', 'desc')
             ->with(['detailGoods', 'detailMoney'])
             ->get();
         return view('client.registration_support.history', compact('registrationSupports'));

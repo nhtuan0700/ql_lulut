@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\GoodsController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PeriodController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\RegistrationSupportController as AdminRegistrationSupportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\AuthController as ClientAuthController;
 use App\Http\Controllers\Client\HomeController;
@@ -84,6 +85,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::get('edit/{id}', [FamilyController::class, 'edit'])->name('edit');
             Route::put('update/{id}', [FamilyController::class, 'update'])->name('update');
         });
+
+        Route::group(['prefix' => 'dang-ky', 'as' => 'registration.'], function() {
+            Route::get('index', [AdminRegistrationSupportController::class, 'index'])->name('index');
+            Route::get('detail/{id}', [AdminRegistrationSupportController::class, 'detail'])->name('detail');
+            Route::post('confirm/{id}', [AdminRegistrationSupportController::class, 'confirm'])->name('confirm');
+            Route::post('cancel/{id}', [AdminRegistrationSupportController::class, 'cancel'])->name('cancel');
+        });
     });
 });
 
@@ -104,6 +112,7 @@ Route::group([], function () {
         Route::get('dang-ky-ung-ho', [RegistrationSupportController::class, 'index'])->name('registration');
         Route::get('lich-su', [RegistrationSupportController::class, 'history'])->name('history');
         Route::post('dang-ky-ung-ho', [RegistrationSupportController::class, 'save']);
+        Route::put('dang-ky-ung-ho/huy/{id}', [RegistrationSupportController::class, 'cancel'])->name('registration.cancel');
 
         Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
             Route::get('/', [ProfileController::class, 'info'])->name('info');

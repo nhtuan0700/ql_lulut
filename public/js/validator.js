@@ -147,7 +147,6 @@ function Validator(formSelector) {
           isValid = false;
         }
       })
-      console.log(isValid);
       if (isValid) {
         if (typeof _this.onSubmit === 'function') {
           var formValue = Array.from(inputElements).reduce((values, input) => {

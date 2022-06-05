@@ -4,13 +4,25 @@ Lịch sử ủng hộ
 @endsection
 @section('content')
   @foreach ($registrationSupports as $item)
-    <div>
-      <h3 class="text-primary">{{ $item->created_date }}</h3>
+    <div class="bg-white p-2">
+      <h3 class="text-primary">{{ $item->created_at }}</h3>
       <h5>{{ $item->period->id }} - {{ $item->period->ward->name }} - {{ $item->period->name }} - Kết thúc: {{ $item->period->date_end }}</h5>
 
-      <p><b>Trạng thái: </b>{!! $item->statusHTML !!}</p>
+      <div class="my-2 d-flex align-items-center">
+        <span class="text-bold">Trạng thái: </span>
+        <span class="px-1">{!! $item->statusHTML !!}</span>
+
+        @if (intval($item->status) === App\Enum\RegistrationStatus::PROCESSING)
+          <form action="{{ route('registration.cancel', ['id' => $item->id]) }}" method="post">
+            @csrf
+            @method('put')
+            <button class="btn btn-danger ml-2 btn-sm">Hủy</button>
+          </form>
+        @endif
+      </div>
       <b class="text-info">Nội dung ủng hộ</b>
-      <p><b>Số tiền: </b>{{ formatCurrency($item->detailMoney->money) }}</p>
+      <p><b>Số tiền: </b>{{ formatCurrency(optional($item->detailMoney)->money) }}</p>
+
       <table class="table" id="tableModal">
         <thead>
           <tr>

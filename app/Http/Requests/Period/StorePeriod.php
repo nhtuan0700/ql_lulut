@@ -25,7 +25,8 @@ class StorePeriod extends FormRequest
     {
         return [
             'name' => 'required|min:10',
-            'date_end' => 'required'
+            'date_end' => 'required',
+            'ward_id' => 'required'
         ];
     }
 

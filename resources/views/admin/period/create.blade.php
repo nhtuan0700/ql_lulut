@@ -28,26 +28,34 @@ Quản lý đợt ủng hộ
                 </div>
                 @enderror
               </div>
-              <div class="row">
-                <div class="form-group col-md-3">
-                  <label for="date_end">Thời gian kết thúc:</label>
-                  <div class="input-group date" id="date_end"
-                    data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input"
-                      data-target="#date_end" name="date_end" autocomplete="off"
-                      rules="required" />
-                    <div class="input-group-append" data-target="#date_end"
-                      data-toggle="datetimepicker">
-                      <div class="input-group-text"><i
-                          class="fa fa-calendar"></i></div>
-                    </div>
+              <div class="form-group">
+                <label for="ward_id">Xã:</label>
+                <select class="custom-select" name="ward_id" id="ward_id">
+                  @foreach ($wards as $item)
+                    <option value="{{ $item->id }}" @if($item->periods->count() > 0) disabled @endif>
+                      {{ $item->name }}
+                    </option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="date_end">Thời gian kết thúc:</label>
+                <div class="input-group date" id="date_end"
+                  data-target-input="nearest">
+                  <input type="text" class="form-control datetimepicker-input"
+                    data-target="#date_end" name="date_end" autocomplete="off"
+                    rules="required" />
+                  <div class="input-group-append" data-target="#date_end"
+                    data-toggle="datetimepicker">
+                    <div class="input-group-text"><i
+                        class="fa fa-calendar"></i></div>
                   </div>
-                  @error('date_end')
-                  <div class="invalid-feedback d-block">
-                    {{ $message }}
-                  </div>
-                  @enderror
                 </div>
+                @error('date_end')
+                <div class="invalid-feedback d-block">
+                  {{ $message }}
+                </div>
+                @enderror
               </div>
               <button type="submit" class="btn btn-primary">Lưu</button>
             </form>

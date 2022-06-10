@@ -32,6 +32,10 @@ Quản lý đợt ủng hộ
                 @enderror
               </div>
               <div class="form-group">
+                <label for="name">Xã:</label>
+                <input type="text" class="form-control" value="{{ $period->ward->name }}" readonly>
+              </div>
+              <div class="form-group">
                 <label for="date_end">Thời gian kết thúc:</label>
                 <div class="input-group date" id="date_end" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input" data-target="#date_end" name="date_end"

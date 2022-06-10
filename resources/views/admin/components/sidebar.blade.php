@@ -80,6 +80,15 @@
             </a>
           </li>
         @endcan
+        @can('family.registration')
+        <li class="nav-item">
+          <a href="{{ route('admin.family_registration.index') }}" class="nav-link" data-link="dang-ky-gia-dinh">
+            <p>
+              Đăng ký hộ gia đình ủng hộ
+            </p>
+          </a>
+        </li>
+      @endcan
       </ul>
     </nav>
   </div>

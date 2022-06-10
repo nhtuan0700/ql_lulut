@@ -22,7 +22,7 @@
                 <div class="form-group">
                   <label for="title">Tiêu đề:</label>
                   <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                    value="{{ old('title') ?? $post->title }}" rules="required|max:50" maxlength="50">
+                    value="{{ old('title') ?? $post->title }}" rules="required">
                   @error('title')
                     <div class="invalid-feedback">
                       {{ $message }}

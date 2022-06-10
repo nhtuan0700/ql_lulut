@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\FamilyController;
+use App\Http\Controllers\Admin\FamilyRegistrationController;
 use App\Http\Controllers\Admin\GoodsController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PeriodController;
@@ -91,6 +92,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::get('detail/{id}', [AdminRegistrationSupportController::class, 'detail'])->name('detail');
             Route::post('confirm/{id}', [AdminRegistrationSupportController::class, 'confirm'])->name('confirm');
             Route::post('cancel/{id}', [AdminRegistrationSupportController::class, 'cancel'])->name('cancel');
+        });
+
+        Route::group(['as' => 'family_registration.', 'prefix' => 'dang-ky-gia-dinh', 'middleware' => 'acl:family.registration'], function () {
+            Route::get('index', [FamilyRegistrationController::class, 'index'])->name('index');
+            Route::post('register', [FamilyRegistrationController::class, 'register'])->name('register');
         });
     });
 });

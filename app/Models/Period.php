@@ -11,7 +11,7 @@ class Period extends Model
     use HasFactory;
     public $incrementing = false;
     protected $fillable = [
-        'id', 'name', 'date_end'
+        'id', 'name', 'date_end', 'ward_id'
     ];
 
     public function getDateEndAttribute($value)
@@ -27,6 +27,10 @@ class Period extends Model
     public function ward()
     {
         return $this->belongsTo(Ward::class, 'ward_id');
+    }
+
+    public function families() {
+        return $this->belongsToMany(Family::class, 'family_period', 'period_id', 'family_id');
     }
 
     public function getStatus()

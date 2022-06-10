@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Period\StorePeriod;
 use App\Http\Requests\Period\UpdatePeriod;
 use App\Models\Period;
+use App\Models\Ward;
 use Carbon\Carbon;
 
 class PeriodController extends Controller
@@ -18,7 +19,10 @@ class PeriodController extends Controller
 
     public function create()
     {
-        return view('admin.period.create');
+        $wards = Ward::with(['periods' => function($query) {
+            $query->whereDate('date_end', '>=', now());
+        }])->get();
+        return view('admin.period.create', compact('wards'));
     }
 
     public function store(StorePeriod $request)
@@ -26,7 +30,8 @@ class PeriodController extends Controller
         $new_period = Period::create([
             'id' => $this->getNewId(),
             'name' => $request->name,
-            'date_end' => $request->date_end
+            'date_end' => $request->date_end,
+            'ward_id' => $request->ward_id
         ]);
         return redirect(route('admin.period.edit', ['id' => $new_period->id]))
             ->with('alert-success', trans('alert.create.success'));
@@ -54,7 +59,7 @@ class PeriodController extends Controller
         $year = $now->format('y');
         $month = $now->format('m');
         $order = 1;
-        $last_field = Period::where('id', 'like', sprintf('%s%s', $year, $month))
+        $last_field = Period::where('id', 'like', sprintf('%s%%', $year, $month) . '%')
             ->orderby('created_at', 'desc')->first();
         if ($last_field) {
             $order += 1;

@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-Đăng ký gia đình ủng hộ
+Bàn giao đợt ủng hộ
 @endsection
 @section('content')
   <section class="content">
@@ -14,7 +14,7 @@
                 <p>Trạng thái: <span>{!! $period->statusHTML !!}</span></p>
                 <p>Trạng thái bàn giao: <span class="badge badge-info">{{  $period->status === 0 ? 'Chưa bàn giao' : 'Đã bàn giao' }}</span></p>
               </div>
-              <b>Danh sách hộ gia đình đã đăng ký</b>
+              <b>Danh sách đã đăng ký</b>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -67,6 +67,17 @@
                     @endforeach
                   </tbody>
                 </table>
+                <div class="d-flex">
+                  <a href="{{ route('admin.handover.print', ['periodId' => $period->id]) }}" 
+                    target="_blank" class="btn btn-secondary mr-1">
+                    In phiếu</a>
+                  @if ($period->getRawOriginal('date_end') < now() && $period->status === 0)
+                    <form action="{{ route('admin.handover.handover', ['periodId' => $period->id]) }}" method="post">
+                      @csrf
+                      <button class="btn btn-info">Bàn giao</button>
+                    </form>
+                  @endif
+                </div>
               </div>
             </div>
           </div>

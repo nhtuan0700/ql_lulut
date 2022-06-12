@@ -9,9 +9,12 @@ use Illuminate\Http\Request;
 
 class RegistrationSupportController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $registrations = RegistrationSupport::orderby('created_at', 'desc')->paginate(5);
+        $registrations = RegistrationSupport::orderby('created_at', 'desc')
+            ->when(isset($request->status), function ($query) use ($request) {
+                $query->where('status', $request->status);
+            })->paginate(5)->withQueryString();
         return view('admin.registration.index', compact('registrations'));
     }
 

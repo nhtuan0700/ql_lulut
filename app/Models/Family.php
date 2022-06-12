@@ -12,7 +12,7 @@ class Family extends Model
     protected $table = 'families';
 
     protected $fillable = [
-        'owner_name', 'person_qty', 'holdhouse_id', 'ward_id'
+        'owner_name', 'person_qty', 'holdhouse_id', 'ward_id', 'address'
     ];
 
     public function ward() {

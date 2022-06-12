@@ -13,13 +13,13 @@ class PeriodController extends Controller
 {
     public function index()
     {
-        $periods = Period::paginate(config('constants.limit_page'));
+        $periods = Period::orderby('date_end', 'desc')->paginate(config('constants.limit_page'));
         return view('admin.period.index', compact('periods'));
     }
 
     public function create()
     {
-        $wards = Ward::with(['periods' => function($query) {
+        $wards = Ward::with(['periods' => function ($query) {
             $query->whereDate('date_end', '>=', now());
         }])->get();
         return view('admin.period.create', compact('wards'));
@@ -27,6 +27,9 @@ class PeriodController extends Controller
 
     public function store(StorePeriod $request)
     {
+        if (Carbon::createFromFormat('d/m/Y', $request->date_end)->format('Y-m-d') <= now()) {
+            return back()->with('alert-fail', 'Ngày kết thúc chưa phù hợp');
+        }
         $new_period = Period::create([
             'id' => $this->getNewId(),
             'name' => $request->name,
@@ -59,10 +62,10 @@ class PeriodController extends Controller
         $year = $now->format('y');
         $month = $now->format('m');
         $order = 1;
-        $last_field = Period::where('id', 'like', sprintf('%s%%', $year, $month) . '%')
+        $last_field = Period::where('id', 'like', sprintf('%s%s', $year, $month) . '%')
             ->orderby('created_at', 'desc')->first();
         if ($last_field) {
-            $order += 1;
+            $order = intval(substr($last_field->id, -2)) + 1;
         }
         $order = str_pad($order, 2, '0', STR_PAD_LEFT);
         $new_id = $year . $month . $order;

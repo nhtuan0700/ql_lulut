@@ -11,7 +11,7 @@ class Period extends Model
     use HasFactory;
     public $incrementing = false;
     protected $fillable = [
-        'id', 'name', 'date_end', 'ward_id'
+        'id', 'name', 'date_end', 'ward_id', 'status'
     ];
 
     public function getDateEndAttribute($value)

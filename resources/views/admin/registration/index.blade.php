@@ -12,6 +12,20 @@
               <div class="d-flex  align-items-center">
                 <span class="card-title mr-3">Danh sách</span>
               </div>
+              <form action="" method="get">
+                <div class="row align-items-center">
+                  <div class="form-group col-md-2">
+                    <label for="status">Trạng thái:</label>
+                    <select id="status" class="form-control select2" name="status">
+                      <option value>Tất cả</option>
+                      <option value="1" @if (request()->status == 1) selected @endif>Đang xử lý</option>
+                      <option value="2" @if (request()->status == 2) selected @endif>Đã duyệt</option>
+                      <option value="4" @if (request()->status == 4) selected @endif>Đã hủy</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-info mt-3">Lọc</button>
+                </div>
+              </form>
             </div>
 
             <div class="card-body">

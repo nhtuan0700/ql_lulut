@@ -17,4 +17,8 @@ class RegistrationSupportDetail extends Model
     public function goods() {
         return $this->belongsTo(Goods::class, 'goods_id');
     }
+
+    public function registration() {
+        return $this->belongsTo(RegistrationSupport::class, 'registration_support_id');
+    }
 }

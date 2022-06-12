@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-  Đăng ký gia đình ủng hộ
+  Bàn giao đợt đăng ký
 @endsection
 @section('content')
   <section class="content">
@@ -13,6 +13,7 @@
                 <span class="card-title mr-3">Danh sách</span>
               </div>
             </div>
+
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -35,11 +36,11 @@
                       <td>{{ $item->date_end }}</td>
                       <td>{!! $item->statusHTML !!}</td>
                       <td>
-                        <span class="badge badge-info">{{  $item->status === 0 ? 'Chưa bàn giao' : 'Đã bàn giao' }}</span>
+                        <span class="badge badge-info">{{ $item->status === 0 ? 'Chưa bàn giao' : 'Đã bàn giao' }}</span>
                       </td>
                       <td>
                         <div class="d-flex justify-content-center">
-                          <a href="{{ route('admin.family_registration.detail', ['periodId' => $item->id]) }}" class="btn btn-info">
+                          <a href="{{ route('admin.handover.detail', ['periodId' => $item->id]) }}" class="btn btn-info">
                             Xem
                           </a>
                         </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\FamilyController;
 use App\Http\Controllers\Admin\FamilyRegistrationController;
 use App\Http\Controllers\Admin\GoodsController;
+use App\Http\Controllers\Admin\HandoverController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PeriodController;
 use App\Http\Controllers\Admin\PostController;
@@ -96,7 +97,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::group(['as' => 'family_registration.', 'prefix' => 'dang-ky-gia-dinh', 'middleware' => 'acl:family.registration'], function () {
             Route::get('index', [FamilyRegistrationController::class, 'index'])->name('index');
+            Route::get('detail/{periodId}', [FamilyRegistrationController::class, 'detail'])->name('detail');
             Route::post('register', [FamilyRegistrationController::class, 'register'])->name('register');
+        });
+        Route::group(['as' => 'handover.', 'prefix' => 'ban-giao', 'middleware' => 'acl:registration.manage'], function () {
+            Route::get('index', [HandoverController::class, 'index'])->name('index');
+            Route::get('{periodId}', [HandoverController::class, 'detail'])->name('detail');
+            Route::post('{periodId}', [HandoverController::class, 'handover'])->name('handover');
+            Route::get('print/{periodId}', [HandoverController::class, 'print'])->name('print');
         });
     });
 });

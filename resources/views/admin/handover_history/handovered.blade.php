@@ -15,39 +15,9 @@
                 <p>Bàn giao cho cán bộ phường: <span class="badge badge-info">{{  $period->status === 0 ? 'Chưa bàn giao' : 'Đã bàn giao' }}</span></p>
                 <p>Bàn giao cho gia đình: <span class="badge badge-info">{{  $period->status != 2 ? 'Chưa bàn giao' : 'Đã bàn giao' }}</span></p>
               </div>
-              <b>Danh sách hộ gia đình đã đăng ký</b>
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Mã hộ khẩu</th>
-                    <th scope="col">Tên chủ hộ</th>
-                    <th scope="col">Số nhân khẩu</th>
-                    <th scope="col">Địa chỉ</th>
-                    <th scope="col">Xã</th>
-                    <th scope="col">Lý do</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($family_registrations as $item)
-                    <tr>
-                      <th>{{ $item->family->holdhouse_id }}</th>
-                      <td>{{ $item->family->owner_name }}</td>
-                      <td>{{ $item->family->person_qty }}</td>
-                      <td>{{ $item->family->address }}</td>
-                      <td>{{ $item->family->ward->name }}</td>
-                      <td>
-                        {{ $item->description }}
-                      </td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-              
               {{--  --}}
               <div class="bg-white p-2">
-                <b class="text-info">Thống kê ủng hộ</b>
-                <p><b>Số tiền: </b>{{ formatCurrency($total_money) }}</p>
-          
+                <p><b>Số tiền: </b>{{ formatCurrency($money) }}</p>
                 <table class="table" id="tableModal">
                   <thead>
                     <tr>
@@ -58,18 +28,19 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($registrationGoods as $key => $item)
+                    @foreach ($goodsDetail as $key => $item)
                       <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $item->goods->name }}</td>
                         <td>{{ $item->goods->unit }}</td>
-                        <td class="text-center">{{ $item->qty_total }}</td>
+                        <td class="text-center">{{ $item->qty }}</td>
                       </tr>
                     @endforeach
                   </tbody>
                 </table>
               </div>
-            </div>
+
+              
           </div>
         </div>
       </div>
@@ -77,4 +48,3 @@
     </div>
   </section>
 @endsection
-

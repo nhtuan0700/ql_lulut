@@ -30,3 +30,5 @@
   - Xem lịch sử đã đăng ký ủng hộ
 5. Khách vãng lai
   - Xem bài viết - x
+6. Chủ hộ gia đình
+  - Xem lịch sử bàn giao

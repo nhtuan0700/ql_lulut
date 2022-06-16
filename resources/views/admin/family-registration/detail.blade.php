@@ -13,7 +13,7 @@
                 <p><b>{{ $period->id }}</b> - {{ $period->name }} - {{ $period->ward->name }}</p>
                 
               </div>
-              <form action="{{ route('admin.family_registration.register') }}" method="post">
+              <form action="{{ route('admin.family_registration.register', ['periodId' => $period->id]) }}" method="post">
                 @csrf
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>

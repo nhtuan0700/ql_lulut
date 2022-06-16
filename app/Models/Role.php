@@ -13,6 +13,7 @@ class Role extends Model
     public const MANAGER = 2;
     public const CADRES = 3;
     public const SUPPORTER = 4;
+    public const FAMILY = 5;
 
     public function permissions() {
         return $this->belongsToMany(Permission::class, 'role_permission', 'role_id', 'permission_id');

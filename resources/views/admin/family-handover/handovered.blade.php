@@ -15,34 +15,6 @@
                 <p>Bàn giao cho cán bộ phường: <span class="badge badge-info">{{  $period->status === 0 ? 'Chưa bàn giao' : 'Đã bàn giao' }}</span></p>
                 <p>Bàn giao cho gia đình: <span class="badge badge-info">{{  $period->status != 2 ? 'Chưa bàn giao' : 'Đã bàn giao' }}</span></p>
               </div>
-              <b>Danh sách hộ gia đình đã đăng ký</b>
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Mã hộ khẩu</th>
-                    <th scope="col">Tên chủ hộ</th>
-                    <th scope="col">Số nhân khẩu</th>
-                    <th scope="col">Địa chỉ</th>
-                    <th scope="col">Xã</th>
-                    <th scope="col">Lý do</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($family_registrations as $item)
-                    <tr>
-                      <th>{{ $item->family->holdhouse_id }}</th>
-                      <td>{{ $item->family->owner_name }}</td>
-                      <td>{{ $item->family->person_qty }}</td>
-                      <td>{{ $item->family->address }}</td>
-                      <td>{{ $item->family->ward->name }}</td>
-                      <td>
-                        {{ $item->description }}
-                      </td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-              
               {{--  --}}
               <div class="bg-white p-2">
                 <b class="text-info">Thống kê ủng hộ</b>
@@ -69,7 +41,46 @@
                   </tbody>
                 </table>
               </div>
-            </div>
+
+              <b>Danh sách hộ gia đình đã đăng ký</b>
+                @foreach ($familyHandovers as $family)
+                @php
+                  $money = $family->handovers->whereNotNull('money')->pluck('money')->first()
+                @endphp
+                <hr>
+                <div class="mt-3">
+                  <p><b>Mã hộ khẩu: </b> {{ $family->holdhouse_id }}</p>
+                  <p><b>Tên chủ hộ: </b> {{ $family->owner_name }}</p>
+                  <p><b>Địa chỉ: </b> {{ $family->address }}</p>
+                  <div class="form-group">
+                    <p for="money">Số tiền bàn giao: <span>{{ formatCurrency($money) }}</span></p>
+                  </div>
+                  <table class="table" id="tableModal">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Tên hàng hóa</th>
+                        <th>Đơn vị tính</th>
+                        <th class="text-center w-25">Số lượng bàn giao</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    @if ($item->qty > 0)
+                      @foreach ($family->handovers->whereNull('money') as $key => $itemHandover)
+                        <tr>
+                          <td>{{ $key + 1 }}</td>
+                          <td>{{ $itemHandover->goods->name }}</td>
+                          <td>{{ $itemHandover->goods->unit }}</td>
+                          <td class="text-center w-25">
+                            {{ $itemHandover->qty }}
+                          </td>
+                        </tr>
+                      @endforeach
+                    @endif
+                    </tbody>
+                  </table>
+                </div>
+              @endforeach
           </div>
         </div>
       </div>
@@ -77,4 +88,3 @@
     </div>
   </section>
 @endsection
-

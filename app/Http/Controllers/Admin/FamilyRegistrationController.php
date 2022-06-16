@@ -53,18 +53,17 @@ class FamilyRegistrationController extends Controller
         return view('admin.family-registration.detail', compact('families', 'period'));
     }
 
-    public function register(Request $request)
+    public function register(Request $request, $periodId)
     {
         if (!$request->families || count($request->families) === 0) {
             return back()->with('alert-fail', 'Số lượng chưa phù hợp');
         };
         try {
-            DB::transaction(function () use ($request) {
-                $period = Period::where('date_end', '>=', now())->where('ward_id', auth()->user()->info->ward_id)->first();
+            DB::transaction(function () use ($request, $periodId) {
                 foreach ($request->families as $key => $item) {
                     FamilyPeriod::create([
                         'family_id' => $key,
-                        'period_id' => $period->id,
+                        'period_id' => $periodId,
                         'description' => $request->families_desc[$key]
                     ]);
                 }

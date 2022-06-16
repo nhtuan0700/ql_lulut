@@ -18,4 +18,8 @@ class Family extends Model
     public function ward() {
         return $this->belongsTo(Ward::class, 'ward_id');
     }
+
+    public function handovers() {
+        return $this->hasMany(FamilyHandover::class, 'family_id');
+    }
 }

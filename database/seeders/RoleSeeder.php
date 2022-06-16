@@ -30,6 +30,10 @@ class RoleSeeder extends Seeder
             [
                 'id' => 4,
                 'name' => 'Người ủng hộ'
+            ],
+            [
+                'id' => 5,
+                'name' => 'Chủ hộ gia đình'
             ]
         ];
         Role::insert($data);

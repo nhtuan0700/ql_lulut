@@ -40,6 +40,12 @@ class RolePermissionSeeder extends Seeder
                 'permissions' => [
                     'family.registration'
                 ],
+            ],
+            [
+                'role_id' => Role::FAMILY,
+                'permissions' => [
+                    'handover.view'
+                ],
             ]
         ];
         foreach ($role_permissions as $item) {

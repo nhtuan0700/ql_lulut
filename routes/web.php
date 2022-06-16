@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\FamilyController;
+use App\Http\Controllers\Admin\FamilyHandoverController;
 use App\Http\Controllers\Admin\FamilyRegistrationController;
 use App\Http\Controllers\Admin\GoodsController;
 use App\Http\Controllers\Admin\HandoverController;
+use App\Http\Controllers\Admin\HandoverHistoryController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PeriodController;
 use App\Http\Controllers\Admin\PostController;
@@ -98,13 +100,31 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::group(['as' => 'family_registration.', 'prefix' => 'dang-ky-gia-dinh', 'middleware' => 'acl:family.registration'], function () {
             Route::get('index', [FamilyRegistrationController::class, 'index'])->name('index');
             Route::get('detail/{periodId}', [FamilyRegistrationController::class, 'detail'])->name('detail');
-            Route::post('register', [FamilyRegistrationController::class, 'register'])->name('register');
+            Route::post('register/{periodId}', [FamilyRegistrationController::class, 'register'])->name('register');
         });
+
+        Route::group(['as' => 'family_handover.', 'prefix' => 'ban-giao-gia-dinh', 'middleware' => 'acl:family.registration'], function () {
+            Route::get('index', [FamilyHandoverController::class, 'index'])->name('index');
+            Route::get('detail/{periodId}', [FamilyHandoverController::class, 'detail'])->name('detail');
+            Route::post('handover/{periodId}', [FamilyHandoverController::class, 'handover'])->name('handover');
+        });
+
         Route::group(['as' => 'handover.', 'prefix' => 'ban-giao', 'middleware' => 'acl:registration.manage'], function () {
             Route::get('index', [HandoverController::class, 'index'])->name('index');
             Route::get('{periodId}', [HandoverController::class, 'detail'])->name('detail');
             Route::post('{periodId}', [HandoverController::class, 'handover'])->name('handover');
             Route::get('print/{periodId}', [HandoverController::class, 'print'])->name('print');
+        });
+
+        Route::group(['as' => 'family_handover.', 'prefix' => 'ban-giao-gia-dinh', 'middleware' => 'acl:family.registration'], function () {
+            Route::get('index', [FamilyHandoverController::class, 'index'])->name('index');
+            Route::get('detail/{periodId}', [FamilyHandoverController::class, 'detail'])->name('detail');
+            Route::post('handover/{periodId}', [FamilyHandoverController::class, 'handover'])->name('handover');
+        });
+
+        Route::group(['as' => 'handover_history.', 'prefix' => 'lich-su', 'middleware' => 'acl:handover.view'], function () {
+            Route::get('index', [HandoverHistoryController::class, 'index'])->name('index');
+            Route::get('detail/{periodId}', [HandoverHistoryController::class, 'detail'])->name('detail');
         });
     });
 });

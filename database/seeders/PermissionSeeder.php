@@ -35,7 +35,10 @@ class PermissionSeeder extends Seeder
             ],
             [
                 'name' => 'family.registration'
-            ]
+            ],
+            [
+                'name' => 'handover.view'
+            ],
         ];
         Permission::insert($data);
     }

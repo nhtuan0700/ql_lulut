@@ -41,6 +41,10 @@ class Period extends Model
         return 0;
     }
 
+    public function familyHandover() {
+        return $this->hasMany(FamilyHandover::class, 'period_id');
+    }
+
     public function getStatusHTMLAttribute()
     {
         $status = $this->getStatus();

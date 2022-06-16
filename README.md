@@ -11,6 +11,7 @@
 2. Cán bộ quản lý phân phối: phuc+1@test.com/123123
 3. Cán bộ: phuc+2@test.com/123123
 4. Người ủng hộ: phuc+3@test.com/123123
+4. Chủ hộ gia đình: phuc+4@test.com/123123
 
 # use case
 1. Quản trị viên
@@ -31,4 +32,4 @@
 5. Khách vãng lai
   - Xem bài viết - x
 6. Chủ hộ gia đình
-  - Xem lịch sử bàn giao
+  - Xem lịch sử được ủng hộ
